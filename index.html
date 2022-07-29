@@ -1,0 +1,63 @@
+<!-- javascript draw heart-shaped line-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        canvas {
+            background: lawngreen; 
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="gycanvas" width="300" height="300"></canvas>
+    <script>
+        var width = document.documentElement.clientWidth;
+        var height = document.documentElement.clientHeight;
+        document.getElementById("gycanvas").setAttribute("width", width);
+        document.getElementById("gycanvas").setAttribute("height", height);
+        var x0 = width / 2;
+        var y0 = height / 2;
+        var context = document.getElementById("gycanvas").getContext("2d");
+        var ctx = document.getElementById("gycanvas").getContext("2d");
+        context.fillStyle = "red";
+        var x, y;
+        for (let t = -3; t <= 3; t = t + 0.001) {
+            setTimeout(
+                function() {
+                    x = 16 * Math.pow(Math.sin(t), 3);
+                    y = 13 * Math.cos(t) - 5 * Math.cos(t * 2) - 2 * Math.cos(t * 3) - Math.cos(t * 4);
+                    //Enlarge the heart
+                    x = x * 16;
+                    y = y * 16;
+                    //Draw the center of the screen as the origin  
+                    context.fillRect(x + x0, y0 - y, 1, 1);
+                }, 
+                1000
+            );
+        }
+        for (let i = 0; i < 50; i++){
+            setTimeout(
+                function(){
+                    ctx.fillStyle = "red";
+                    ctx.font = "60px";
+                    context.fillText("I Love You", Math.floor(Math.random() * 1200), Math.floor(Math.random() * 2200));
+                    context.fillText("I Love You", Math.floor(Math.random() * 1200), Math.floor(Math.random() * 2200));
+                }, 
+                1000
+            );
+        }
+        
+        // document.getElementById("gycanvas").insertAdjacentHTML("beforeend", "<div>I love you</div>");
+    </script>
+</body>
+
+</html>
